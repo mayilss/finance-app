@@ -7,7 +7,7 @@ export default function Header() {
       <div>
         <h1 className="text-3xl font-bold text-white">uFinance</h1>
       </div>
-      <nav>
+      <nav role="navigation">
         <ul className="flex space-x-4">
           <li>
             <NavLink to="/" className={getNavLinkStyle}>
