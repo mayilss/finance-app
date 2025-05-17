@@ -1,5 +1,5 @@
 import type { Transaction } from "@app/types/transaction";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: Transaction[] = [];
 
@@ -7,10 +7,12 @@ const transactionSlice = createSlice({
   name: "transaction",
   initialState,
   reducers: {
-    addTransaction: (state, { payload }) => {
+    addTransaction: (state, { payload }: PayloadAction<Transaction>) => {
       state.push(payload);
     },
-    removeTransaction: () => {},
+    removeTransaction: (state, { payload }: PayloadAction<string>) => {
+      state = state.filter((transaction) => transaction.id != payload);
+    },
   },
 });
 
