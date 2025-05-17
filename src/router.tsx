@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import DashboardPage from "./pages/DashboardPage";
-import DebtsPage from "./pages/DebtsPage";
-import SettingsPage from "./pages/SettingsPage";
-import TransactionsPage from "./pages/TransactionsPage";
-import Layout from "./components/layout/Layout";
+import DashboardPage from "@pages/DashboardPage";
+import DebtsPage from "@pages/DebtsPage";
+import SettingsPage from "@pages/SettingsPage";
+import TransactionsPage from "@pages/TransactionsPage";
+import Layout from "@components/layout/Layout";
 
 const router = createBrowserRouter([
   {
