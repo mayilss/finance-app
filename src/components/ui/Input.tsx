@@ -15,14 +15,31 @@ interface InputProps<T extends FieldValues = FieldValues>
 function Input<T extends FieldValues>(props: InputProps<T>) {
   return (
     <div>
-      {props.label && <label htmlFor={props.name}>{props.label}</label>}
       <Controller
         control={props.control}
         name={props.name}
         render={({ field, fieldState }) => (
-          <div>
-            <input {...props} {...field} />
-            {fieldState.error && <span>{fieldState.error.message}</span>}
+          <div className="flex flex-col">
+            {props.label && (
+              <label
+                htmlFor={props.name}
+                className={
+                  fieldState.error?.message ? "text-error" : "text-text-primary"
+                }
+              >
+                {props.label}
+              </label>
+            )}
+            <input
+              className={`${fieldState.error?.message ? "border-error focus:ring-error" : "border-border focus:ring-primary"} border-[1px] rounded-lg p-2 focus:outline-none focus:ring-[1px]`}
+              {...props}
+              {...field}
+            />
+            {fieldState.error && (
+              <span className="text-error text-xs">
+                {fieldState.error.message}
+              </span>
+            )}
           </div>
         )}
       />

@@ -11,7 +11,12 @@ const transactionSlice = createSlice({
       state.push(payload);
     },
     removeTransaction: (state, { payload }: PayloadAction<string>) => {
-      state = state.filter((transaction) => transaction.id != payload);
+      const index = state.findIndex(
+        (transaction) => transaction.id === payload,
+      );
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
     },
   },
 });
