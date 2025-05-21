@@ -5,6 +5,7 @@ import {
   addTransaction,
   removeTransaction,
 } from "@features/transactions/slice";
+import { formatCurrency, formatDate } from "@lib/format";
 // import resolver from "@lib/resolver";
 import { useForm } from "react-hook-form";
 
@@ -65,10 +66,11 @@ export default function TransactionsPage() {
                   {transaction.label}
                 </td>
                 <td className="text-left p-4 text-text-primary">
-                  ${transaction.amount.toFixed(2)}
+                  {/* ${transaction.amount.toFixed(2)} */}
+                  {formatCurrency(transaction.amount)}
                 </td>
                 <td className="text-left p-4 text-text-primary">
-                  {transaction.date.split("T")[0]}
+                  {formatDate(transaction.date)}
                 </td>
                 <td className="text-left p-4 text-text-primary">
                   <button
