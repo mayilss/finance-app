@@ -1,8 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@app/hooks";
 import Table from "@components/ui/Table";
 import { formatCurrency, formatDate } from "@lib/format";
-import { removeTransaction, selectTransactions } from "../slice";
+import { removeTransaction } from "../slice";
 import React from "react";
+import { selectTransactions } from "../selectors";
 
 export default function TransactionsTable() {
   const transactions = useAppSelector(selectTransactions);

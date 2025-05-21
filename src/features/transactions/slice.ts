@@ -1,7 +1,5 @@
-import type { Transaction } from "@app/types/transaction";
+import type { Transaction, TransactionState } from "@app/types/transaction";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
-type TransactionState = { [id: string]: Transaction };
 
 const initialState: TransactionState = {};
 
@@ -17,9 +15,6 @@ const transactionSlice = createSlice({
     },
   },
 });
-
-export const selectTransactions = (state: { transactions: TransactionState }) =>
-  Object.values(state.transactions);
 
 export const { addTransaction, removeTransaction } = transactionSlice.actions;
 export default transactionSlice.reducer;

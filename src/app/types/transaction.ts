@@ -4,3 +4,5 @@ export interface Transaction {
   amount: number;
   date: string;
 }
+
+export type TransactionState = Record<string, Transaction>;
