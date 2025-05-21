@@ -4,13 +4,13 @@ import Input from "@components/ui/Input";
 import {
   addTransaction,
   removeTransaction,
+  selectTransactions,
 } from "@features/transactions/slice";
 import { formatCurrency, formatDate } from "@lib/format";
-// import resolver from "@lib/resolver";
 import { useForm } from "react-hook-form";
 
 export default function TransactionsPage() {
-  const transactions = useAppSelector((state) => state.transaction);
+  const transactions = useAppSelector(selectTransactions);
   const dispatch = useAppDispatch();
   const form = useForm<Transaction>({
     defaultValues: {
