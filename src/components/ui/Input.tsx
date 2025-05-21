@@ -32,6 +32,7 @@ function Input<T extends FieldValues>(props: InputProps<T>) {
             )}
             <input
               className={`${fieldState.error?.message ? "border-error focus:ring-error" : "border-border focus:ring-primary"} border-[1px] rounded-lg p-2 focus:outline-none focus:ring-[1px]`}
+              id={props.name}
               {...props}
               {...field}
             />
