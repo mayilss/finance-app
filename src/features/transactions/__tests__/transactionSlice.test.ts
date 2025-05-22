@@ -20,6 +20,7 @@ describe("addTransaction", () => {
       amount: 100,
       date: "2025-05-17",
       label: "Groceries",
+      type: "Expense",
     };
 
     const stateAfter = transactionReducer(
@@ -41,6 +42,7 @@ describe("addTransaction", () => {
         amount: 50,
         label: "Utilities",
         date: "2025-05-16",
+        type: "Expense",
       },
     };
 
@@ -49,6 +51,7 @@ describe("addTransaction", () => {
       amount: 200,
       label: "Salary",
       date: "2025-05-17",
+      type: "Income",
     };
 
     const stateAfter = transactionReducer(
@@ -72,12 +75,14 @@ describe("removeTransaction", () => {
         amount: 50,
         label: "Utilities",
         date: "2025-05-16",
+        type: "Expense",
       },
       "2": {
         id: "2",
         amount: 200,
         label: "Salary",
         date: "2025-05-17",
+        type: "Income",
       },
     };
 

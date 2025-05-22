@@ -1,11 +1,12 @@
-export default function Table({
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLTableElement>) {
+interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+  caption: string;
+}
+
+export default function Table({ children, caption, ...props }: TableProps) {
   return (
     <div className="container mx-auto" {...props}>
       <table className="w-full bg-white shadow-md rounded-lg overflow-hidden">
-        <caption className="sr-only">List of all previous transactions</caption>
+        <caption className="sr-only">{caption}</caption>
         {children}
       </table>
     </div>

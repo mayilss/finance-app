@@ -1,49 +1,4 @@
-// import transactionReducer from "@features/transactions/slice";
-// import TransactionPage from "@pages/TransactionsPage";
-// import { configureStore } from "@reduxjs/toolkit";
-// import { cleanup, fireEvent, render } from "@testing-library/react";
-// import { Provider } from "react-redux";
-// import { afterEach, describe, expect, it } from "vitest";
-// import "@testing-library/jest-dom";
-
-// afterEach(cleanup);
-
-// function renderWithRedux(ui: React.ReactElement) {
-//   const store = configureStore({
-//     reducer: { transactions: transactionReducer },
-//   });
-//   return render(<Provider store={store}>{ui}</Provider>);
-// }
-
-// describe("TransactionPage integration", () => {
-//   it("lets a user add a transaction and see it in the table", async () => {
-//     const screen = renderWithRedux(<TransactionPage />);
-
-//     const labelInput = screen.getByLabelText(/Label/i, { selector: "input" });
-//     const amountInput = screen.getByLabelText(/Amount/i, { selector: "input" });
-//     const addButton = screen.getByRole("button", { name: /Add/i });
-
-//     const testData = {
-//       label: "Test Transaction",
-//       amount: "100",
-//     };
-
-//     fireEvent.change(labelInput, {
-//       target: { value: testData.label },
-//     });
-//     fireEvent.change(amountInput, {
-//       target: { value: testData.amount },
-//     });
-
-//     await addButton.click();
-
-//     await expect((labelInput as HTMLInputElement).value).toBe("");
-//     await expect((amountInput as HTMLInputElement).value).toBe("0");
-//     await expect(screen.getByText(testData.label)).toBeDefined();
-//     await expect(screen.getByText(testData.amount)).toBeDefined();
-//   });
-// });
-
+import { TRANSACTION_TYPES } from "@app/types/transaction";
 import transactionReducer from "@features/transactions/slice";
 import { formatCurrency } from "@lib/format";
 import TransactionPage from "@pages/TransactionsPage";
@@ -66,6 +21,9 @@ describe("TransactionPage integration", () => {
   it("lets a user add a transaction and see it in the table", async () => {
     renderWithRedux(<TransactionPage />);
 
+    const typeInput = screen.getByLabelText(/Transaction Type/i, {
+      selector: "select",
+    }) as HTMLSelectElement;
     const labelInput = screen.getByLabelText(/Label/i, {
       selector: "input",
     }) as HTMLInputElement;
@@ -77,7 +35,11 @@ describe("TransactionPage integration", () => {
     const testData = {
       label: "Test Transaction",
       amount: "100",
+      type: TRANSACTION_TYPES[0], // Assuming this is "Income"
     };
+
+    // await userEvent.clear(typeInput);
+    await userEvent.type(typeInput, testData.type);
 
     await userEvent.clear(labelInput);
     await userEvent.type(labelInput, testData.label);
@@ -88,11 +50,17 @@ describe("TransactionPage integration", () => {
     await userEvent.click(addButton);
 
     expect(labelInput.value).toBe("");
-    expect(amountInput.value).toBe("0");
+    expect(amountInput.value).toBe("");
+    expect(typeInput.value).toBe(TRANSACTION_TYPES[0]);
 
     expect(screen.getByText(testData.label)).toBeDefined();
     expect(
       screen.getByText(formatCurrency(Number(testData.amount))),
+    ).toBeDefined();
+    expect(
+      screen.getByText(testData.type, {
+        selector: "span",
+      }),
     ).toBeDefined();
   });
 });

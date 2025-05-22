@@ -5,14 +5,15 @@ import {
   type FieldValues,
 } from "react-hook-form";
 
-interface InputProps<T extends FieldValues = FieldValues>
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface SelectProps<T extends FieldValues = FieldValues>
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
   control: Control<T>;
   name: FieldPath<T>;
   label?: string;
+  options: Array<{ value: string; label: string }>;
 }
 
-function Input<T extends FieldValues>(props: InputProps<T>) {
+function Select<T extends FieldValues>(props: SelectProps<T>) {
   return (
     <Controller
       control={props.control}
@@ -29,12 +30,18 @@ function Input<T extends FieldValues>(props: InputProps<T>) {
               {props.label}
             </label>
           )}
-          <input
+          <select
             className={`${fieldState.error?.message ? "border-error focus:ring-error" : "border-border focus:ring-primary"} border-[1px] rounded-lg p-2 focus:outline-none focus:ring-[1px]`}
             id={props.name}
             {...props}
             {...field}
-          />
+          >
+            {props.options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
           {fieldState.error && (
             <span className="text-error text-xs">
               {fieldState.error.message}
@@ -46,4 +53,4 @@ function Input<T extends FieldValues>(props: InputProps<T>) {
   );
 }
 
-export default Input;
+export default Select;
