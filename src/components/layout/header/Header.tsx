@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
-import getNavLinkStyle from "./get-nav-link-style";
-import SidebarButton from "./sidebar/SidebarButton";
+import NAV_LIST from "../nav-list";
+import NavItem from "../nav-item/NavItem";
+import SidebarButton from "../sidebar/SidebarButton";
 
 interface HeaderProps {
   toggleSidebar: () => void;
@@ -14,26 +14,9 @@ export default function Header({ toggleSidebar }: HeaderProps) {
       </div>
       <nav role="navigation" className="hidden md:block">
         <ul className="flex space-x-4">
-          <li>
-            <NavLink to="/" className={getNavLinkStyle}>
-              Dashboard
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/transactions" className={getNavLinkStyle}>
-              Transactions
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/debts" className={getNavLinkStyle}>
-              Debts
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/settings" className={getNavLinkStyle}>
-              Settings
-            </NavLink>
-          </li>
+          {NAV_LIST.map((item) => (
+            <NavItem key={item.to} to={item.to} label={item.label} />
+          ))}
         </ul>
       </nav>
       <div className="md:hidden">
