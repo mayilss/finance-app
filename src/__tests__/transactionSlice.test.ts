@@ -6,7 +6,10 @@ import transactionReducer, {
   addTransaction,
   removeTransaction,
 } from "@features/transactions/slice";
-import { describe, expect, it } from "vitest";
+import { cleanup } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
+
+afterEach(cleanup);
 
 describe("addTransaction", () => {
   it("should handle adding a new transaction", () => {
@@ -28,6 +31,7 @@ describe("addTransaction", () => {
 
     expect(values).toHaveLength(1);
     expect(values[0]).toEqual(newTransaction);
+    expect(stateAfter).not.toBe(initialState);
   });
 
   it("should correctly handle multiple transactions", () => {
@@ -56,6 +60,7 @@ describe("addTransaction", () => {
 
     expect(values).toHaveLength(2);
     expect(values[1]).toEqual(newTransaction);
+    expect(stateAfter).not.toBe(initialState);
   });
 });
 
@@ -82,5 +87,6 @@ describe("removeTransaction", () => {
 
     expect(values).toHaveLength(1);
     expect(values[0].id).toBe("2");
+    expect(stateAfter).not.toBe(initialState);
   });
 });
