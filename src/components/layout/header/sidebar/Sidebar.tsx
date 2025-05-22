@@ -1,19 +1,22 @@
 import { NavLink } from "react-router-dom";
-import getNavLinkStyle from "./get-nav-link-style";
-import SidebarButton from "./sidebar/SidebarButton";
+import getNavLinkStyle from "../get-nav-link-style";
+import SidebarButton from "./SidebarButton";
 
-interface HeaderProps {
+interface SidebarProps {
+  isOpen: boolean;
   toggleSidebar: () => void;
 }
 
-export default function Header({ toggleSidebar }: HeaderProps) {
+export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
   return (
-    <header className="w-full mx-auto px-4 py-2 bg-header flex items-center justify-between fixed">
-      <div>
-        <h1 className="text-3xl font-bold text-primary">uFinance</h1>
+    <div
+      className={`fixed right-0 top-0 h-screen w-xs bg-header text-white p-4 z-10 ${isOpen ? "translate-x-full" : ""} duration-300 ease-in-out rounded-l-lg border-l-2 border-primary`}
+    >
+      <div className="text-right">
+        <SidebarButton toggleSidebar={toggleSidebar} />
       </div>
-      <nav role="navigation" className="hidden md:block">
-        <ul className="flex space-x-4">
+      <nav role="navigation">
+        <ul className="flex flex-col space-y-4">
           <li>
             <NavLink to="/" className={getNavLinkStyle}>
               Dashboard
@@ -36,9 +39,6 @@ export default function Header({ toggleSidebar }: HeaderProps) {
           </li>
         </ul>
       </nav>
-      <div className="md:hidden">
-        <SidebarButton toggleSidebar={toggleSidebar} />
-      </div>
-    </header>
+    </div>
   );
 }
