@@ -20,7 +20,10 @@ export default function TransactionsTable() {
   };
 
   return (
-    <Table className="mt-8" caption="List of all previous transactions">
+    <Table
+      className="mt-8 overflow-scroll"
+      caption="List of all previous transactions"
+    >
       <Table.Head columns={columns} />
       <Table.Body>
         {transactions.map((transaction) => (
@@ -34,8 +37,8 @@ export default function TransactionsTable() {
                 key={transaction.id}
                 className={
                   transaction.type === TRANSACTION_TYPES[0]
-                    ? "text-green-500"
-                    : "text-red-500"
+                    ? "text-success"
+                    : "text-error"
                 }
               >
                 {transaction.type}
@@ -45,7 +48,7 @@ export default function TransactionsTable() {
                 onClick={() => {
                   onDelete(transaction.id);
                 }}
-                className="border-2 border-red-500 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-200 cursor-pointer"
+                className="border-2 border-error px-4 py-2 bg-error text-white rounded-lg hover:bg-red-600 transition-colors duration-200 cursor-pointer"
               >
                 Delete
               </button>,

@@ -4,7 +4,7 @@ import TransactionsTable from "@features/transactions/components/TransactionsTab
 
 export default function TransactionsPage() {
   return (
-    <div className="px-8 py-16 bg-bg h-screen">
+    <div className="px-3 md:px-8 py-16 bg-bg min-h-screen">
       <h1 className="text-3xl font-bold text-text-primary">Transactions</h1>
       <TransactionForm />
       <TransactionsTable />
