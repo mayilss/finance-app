@@ -1,21 +1,12 @@
 import { TRANSACTION_TYPES } from "@app/types/transaction";
-import transactionReducer from "@features/transactions/slice";
 import { formatCurrency } from "@lib/format";
+import renderWithRedux from "@lib/render-with-redux";
 import TransactionPage from "@pages/TransactionsPage";
-import { configureStore } from "@reduxjs/toolkit";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Provider } from "react-redux";
 import { afterEach, describe, expect, it } from "vitest";
 
 afterEach(cleanup);
-
-function renderWithRedux(ui: React.ReactElement) {
-  const store = configureStore({
-    reducer: { transactions: transactionReducer },
-  });
-  return render(<Provider store={store}>{ui}</Provider>);
-}
 
 describe("TransactionPage integration", () => {
   it("lets a user add a transaction and see it in the table", async () => {
