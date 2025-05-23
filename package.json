@@ -12,7 +12,8 @@
     "prepare": "husky install",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",

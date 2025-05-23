@@ -41,3 +41,14 @@ jobs:
 
       - name: Run Coverage
         run: npm run coverage
+
+      - name: Start dev server
+        run: npm run dev &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:5173
+
+      - name: Run Cypress tests
+        run: npm run cy:run
+        env:
+          CI: true
