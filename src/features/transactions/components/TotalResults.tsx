@@ -1,25 +1,17 @@
 import { useAppSelector } from "@app/hooks";
 import { formatCurrency } from "@lib/format";
-import {
-  selectTotalBalance,
-  selectTotalExpense,
-  selectTotalIncome,
-} from "../selectors";
+import { selectTotalExpense, selectTotalIncome } from "../selectors";
 
 export default function TotalResults() {
   const totalIncome = useAppSelector(selectTotalIncome);
   const totalExpense = useAppSelector(selectTotalExpense);
-  const totalBalance = useAppSelector(selectTotalBalance);
   return (
     <p className="display flex flex-col mt-8 text-lg font-semibold">
-      <span className="text-success">
+      <span className="text-success" data-cy="total-income">
         Total Income: {formatCurrency(totalIncome)}
       </span>
-      <span className="text-error">
+      <span className="text-error" data-cy="total-expense">
         Total Expense: {formatCurrency(totalExpense)}
-      </span>
-      <span className={totalBalance < 0 ? "text-error" : "text-success"}>
-        Net Balance: {formatCurrency(totalBalance)}
       </span>
     </p>
   );
