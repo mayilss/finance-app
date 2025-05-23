@@ -2,8 +2,10 @@ import type { RootState } from "@app/store";
 import { TRANSACTION_TYPES } from "@app/types/transaction";
 import renderWithRedux from "@lib/render-with-redux";
 import DashboardPage from "@pages/DashboardPage";
-import { screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
+
+afterEach(cleanup);
 
 describe("DashboardPage", () => {
   it("should render the Net Balance", () => {

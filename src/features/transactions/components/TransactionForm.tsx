@@ -46,15 +46,25 @@ export default function TransactionForm() {
             label: type,
             value: type,
           }))}
+          data-cy="transaction-type"
         />
-        <Input control={form.control} name="label" label="Label" />
+        <Input
+          control={form.control}
+          name="label"
+          label="Label"
+          data-cy="transaction-label"
+        />
         <Input
           control={form.control}
           name="amount"
           label="Amount"
           type="number"
+          data-cy="transaction-amount"
         />
-        <button className="self-center border-2 border-primary px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors duration-200 cursor-pointer">
+        <button
+          data-cy="add-transaction"
+          className="self-center border-2 border-primary px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors duration-200 cursor-pointer"
+        >
           Add
         </button>
       </div>

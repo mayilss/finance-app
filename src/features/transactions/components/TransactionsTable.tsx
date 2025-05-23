@@ -28,6 +28,7 @@ export default function TransactionsTable() {
       <Table.Body>
         {transactions.map((transaction) => (
           <Table.Row
+            data-cy="transaction-row"
             key={transaction.id}
             cells={[
               transaction.label,
