@@ -2,6 +2,13 @@ describe("Dashboard Transactions Flow", function () {
   beforeEach(() => {
     cy.fixture("transactions").as("transactions");
   });
+
+  afterEach(function () {
+    if (this.currentTest?.state === "failed") {
+      cy.screenshot(`${Cypress.spec.name}/${this.currentTest.title} -- failed`);
+    }
+  });
+
   it("should add and delete a transaction and update net balance", function () {
     cy.visit("/");
     cy.get('[data-cy="net-balance"]').should("have.text", "Net Balance: $0.00");
