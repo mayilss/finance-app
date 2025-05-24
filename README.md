@@ -1,3 +1,5 @@
+[![CI Status](https://github.com/mayilss/finance-app/actions/workflows/ci.yml/badge.svg)](https://github.com/mayilss/finance-app/actions/workflows/ci.yml)
+
 # Finance App 🔢💰
 
 A minimal, money-management app built with React, TypeScript & Vite.  
