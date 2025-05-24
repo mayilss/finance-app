@@ -1,6 +1,6 @@
 export default function DebtsPage() {
   return (
-    <div className="px-8 py-16 bg-bg h-screen">
+    <div>
       <h1>DebtsPage</h1>
     </div>
   );

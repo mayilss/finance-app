@@ -1,4 +1,4 @@
-import { TRANSACTION_TYPES } from "@app/types/transaction";
+import type { TransactionFormValues } from "@app/types/transaction";
 import { formatCurrency } from "@lib/format";
 import renderWithRedux from "@lib/render-with-redux";
 import TransactionPage from "@pages/TransactionsPage";
@@ -21,15 +21,14 @@ describe("TransactionPage integration", () => {
     const amountInput = screen.getByLabelText(/Amount/i, {
       selector: "input",
     }) as HTMLInputElement;
-    const addButton = screen.getByRole("button", { name: /Add|Submit/i });
+    const addButton = screen.getByRole("button", { name: /Add/i });
 
-    const testData = {
+    const testData: TransactionFormValues = {
       label: "Test Transaction",
       amount: "100",
-      type: TRANSACTION_TYPES[0], // Assuming this is "Income"
+      type: "income",
     };
 
-    // await userEvent.clear(typeInput);
     await userEvent.type(typeInput, testData.type);
 
     await userEvent.clear(labelInput);
@@ -42,7 +41,7 @@ describe("TransactionPage integration", () => {
 
     expect(labelInput.value).toBe("");
     expect(amountInput.value).toBe("");
-    expect(typeInput.value).toBe(TRANSACTION_TYPES[0]);
+    expect(typeInput.value).toBe("income");
 
     expect(screen.getByText(testData.label)).toBeDefined();
     expect(

@@ -1,4 +1,4 @@
-export const TRANSACTION_TYPES = ["Income", "Expense"] as const;
+export const TRANSACTION_TYPES = ["income", "expense"] as const;
 export type TransactionType = (typeof TRANSACTION_TYPES)[number];
 
 export interface Transaction {
@@ -10,3 +10,10 @@ export interface Transaction {
 }
 
 export type TransactionState = Record<string, Transaction>;
+
+export type TransactionFormValues = Omit<
+  Transaction,
+  "amount" | "id" | "date"
+> & {
+  amount: string;
+};

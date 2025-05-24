@@ -1,5 +1,6 @@
 import type { RootState } from "@app/store";
-import { TRANSACTION_TYPES, type Transaction } from "@app/types/transaction";
+import { type Transaction } from "@app/types/transaction";
+import { cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import {
   selectTotalBalance,
@@ -7,25 +8,24 @@ import {
   selectTotalIncome,
   selectTransactions,
 } from "../selectors";
-import { cleanup } from "@testing-library/react";
 
 afterEach(cleanup);
-const [income, expense] = TRANSACTION_TYPES;
+type TransactionTestRootState = Pick<RootState, "transactions">;
 
 describe("select transactions", () => {
   it("should select all transactions", () => {
-    const state: RootState = {
+    const state: TransactionTestRootState = {
       transactions: {
         1: {
           id: "1",
-          type: income,
+          type: "income",
           amount: 100,
           date: "2023-01-01",
           label: "Salary",
         },
         2: {
           id: "2",
-          type: expense,
+          type: "expense",
           amount: 50,
           date: "2023-01-02",
           label: "Groceries",
@@ -36,14 +36,14 @@ describe("select transactions", () => {
     const expectedTransactions: Transaction[] = [
       {
         id: "1",
-        type: income,
+        type: "income",
         amount: 100,
         date: "2023-01-01",
         label: "Salary",
       },
       {
         id: "2",
-        type: expense,
+        type: "expense",
         amount: 50,
         date: "2023-01-02",
         label: "Groceries",
@@ -56,25 +56,25 @@ describe("select transactions", () => {
 
 describe("select total income", () => {
   it("should select total income", () => {
-    const state: RootState = {
+    const state: TransactionTestRootState = {
       transactions: {
         "1": {
           id: "1",
-          type: income,
+          type: "income",
           amount: 100,
           date: "2023-01-01",
           label: "Salary",
         },
         "2": {
           id: "2",
-          type: expense,
+          type: "expense",
           amount: 50,
           date: "2023-01-02",
           label: "Groceries",
         },
         "3": {
           id: "3",
-          type: income,
+          type: "income",
           amount: 50,
           date: "2023-01-03",
           label: "Bonus",
@@ -88,25 +88,25 @@ describe("select total income", () => {
 
 describe("select total expense", () => {
   it("should select total expense", () => {
-    const state: RootState = {
+    const state: TransactionTestRootState = {
       transactions: {
         "1": {
           id: "1",
-          type: income,
+          type: "income",
           amount: 100,
           date: "2023-01-01",
           label: "Salary",
         },
         "2": {
           id: "2",
-          type: expense,
+          type: "expense",
           amount: 50,
           date: "2023-01-02",
           label: "Groceries",
         },
         "3": {
           id: "3",
-          type: expense,
+          type: "expense",
           amount: 30,
           date: "2023-01-03",
           label: "Utilities",
@@ -120,25 +120,25 @@ describe("select total expense", () => {
 
 describe("select net balance", () => {
   it("should select net balance", () => {
-    const state: RootState = {
+    const state: TransactionTestRootState = {
       transactions: {
         "1": {
           id: "1",
-          type: income,
+          type: "income",
           amount: 100,
           date: "2023-01-01",
           label: "Salary",
         },
         "2": {
           id: "2",
-          type: expense,
+          type: "expense",
           amount: 50,
           date: "2023-01-02",
           label: "Groceries",
         },
         "3": {
           id: "3",
-          type: expense,
+          type: "expense",
           amount: 30,
           date: "2023-01-03",
           label: "Utilities",

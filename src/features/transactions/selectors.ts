@@ -1,13 +1,11 @@
-import {
-  TRANSACTION_TYPES,
-  type TransactionState,
-} from "@app/types/transaction";
+import type { RootState } from "@app/store";
 import { formatDate } from "@lib/format";
 import { createSelector } from "@reduxjs/toolkit";
 
-export const selectTransactionsState = (state: {
-  transactions: TransactionState;
-}) => state.transactions;
+export const selectTransactionsState = createSelector(
+  (state) => state,
+  (state: RootState) => state.transactions,
+);
 
 export const selectTransactions = createSelector(
   [selectTransactionsState],
@@ -18,7 +16,7 @@ export const selectTotalIncome = createSelector(
   [selectTransactions],
   (transactions) => {
     return transactions
-      .filter((transaction) => transaction.type === TRANSACTION_TYPES[0])
+      .filter((transaction) => transaction.type === "income")
       .reduce((total, transaction) => total + transaction.amount, 0);
   },
 );
@@ -27,7 +25,7 @@ export const selectTotalExpense = createSelector(
   [selectTransactions],
   (transactions) => {
     return transactions
-      .filter((transaction) => transaction.type === TRANSACTION_TYPES[1])
+      .filter((transaction) => transaction.type === "expense")
       .reduce((total, transaction) => total + transaction.amount, 0);
   },
 );
@@ -45,7 +43,7 @@ export const selectNetBalanceChartData = createSelector(
     let netBalance = 0;
 
     const data = transactions.map((transaction) => {
-      if (transaction.type === TRANSACTION_TYPES[0]) {
+      if (transaction.type === "income") {
         netBalance += transaction.amount;
       } else {
         netBalance -= transaction.amount;

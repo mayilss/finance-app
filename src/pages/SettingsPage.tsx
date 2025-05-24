@@ -1,7 +1,12 @@
+import ThemeForm from "@features/settings/components/ThemeForm";
+
 export default function SettingsPage() {
   return (
-    <div className="px-8 py-16 bg-bg h-screen">
-      <h1>SettingsPage</h1>
+    <div>
+      <h1 className="text-2xl font-bold text-text-primary dark:text-text-primary-dark">
+        Settings
+      </h1>
+      <ThemeForm />
     </div>
   );
 }

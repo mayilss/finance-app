@@ -8,9 +8,11 @@ interface HeaderProps {
 
 export default function Header({ toggleSidebar }: HeaderProps) {
   return (
-    <header className="w-full mx-auto px-4 py-2 bg-header flex items-center justify-between fixed">
+    <header className="w-full mx-auto px-4 py-2 bg-bg dark:bg-bg-dark flex items-center justify-between fixed border-b-border-dark dark:border-b-border border-b-[1px] z-10">
       <div>
-        <h1 className="text-3xl font-bold text-primary">uFinance</h1>
+        <h1 className="text-3xl font-bold text-primary dark:text-primary-dark">
+          uFinance
+        </h1>
       </div>
       <nav role="navigation" className="hidden md:block">
         <ul className="flex space-x-4">

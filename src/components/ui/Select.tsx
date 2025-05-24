@@ -24,20 +24,26 @@ function Select<T extends FieldValues>(props: SelectProps<T>) {
             <label
               htmlFor={props.name}
               className={
-                fieldState.error?.message ? "text-error" : "text-text-primary"
+                fieldState.error?.message
+                  ? "text-error"
+                  : "text-text-primary dark:text-text-primary-dark"
               }
             >
               {props.label}
             </label>
           )}
           <select
-            className={`${fieldState.error?.message ? "border-error focus:ring-error" : "border-border focus:ring-primary"} border-[1px] rounded-lg p-2 focus:outline-none focus:ring-[1px]`}
+            className={`${fieldState.error?.message ? "border-error focus:ring-error" : "border-border focus:ring-primary"} border-[1px] rounded-lg p-2 focus:outline-none focus:ring-[1px] text-text-primary dark:text-text-primary-dark`}
             id={props.name}
             {...props}
             {...field}
           >
             {props.options.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option
+                key={option.value}
+                value={option.value}
+                className="text-text-primary dark:text-text-primary-dark bg-bg dark:bg-bg-dark"
+              >
                 {option.label}
               </option>
             ))}

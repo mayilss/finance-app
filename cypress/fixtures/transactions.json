@@ -1,21 +1,21 @@
 [
   {
-    "type": "Income",
+    "type": "income",
     "label": "Bonus",
     "amount": "100"
   },
   {
-    "type": "Expense",
+    "type": "expense",
     "label": "Groceries",
     "amount": "50"
   },
   {
-    "type": "Expense",
+    "type": "expense",
     "label": "Drugs",
     "amount": "50"
   },
   {
-    "type": "Income",
+    "type": "income",
     "label": "Gambling",
     "amount": "100"
   }

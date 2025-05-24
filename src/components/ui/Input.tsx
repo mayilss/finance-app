@@ -23,14 +23,16 @@ function Input<T extends FieldValues>(props: InputProps<T>) {
             <label
               htmlFor={props.name}
               className={
-                fieldState.error?.message ? "text-error" : "text-text-primary"
+                fieldState.error?.message
+                  ? "text-error"
+                  : "text-text-primary dark:text-text-primary-dark"
               }
             >
               {props.label}
             </label>
           )}
           <input
-            className={`${fieldState.error?.message ? "border-error focus:ring-error" : "border-border focus:ring-primary"} border-[1px] rounded-lg p-2 focus:outline-none focus:ring-[1px]`}
+            className={`${fieldState.error?.message ? "border-error focus:ring-error" : "border-border dark:border-border-dark focus:ring-primary dark:focus:ring-primary-dark"} border-[1px] rounded-lg p-2 focus:outline-none focus:ring-[1px] text-text-primary dark:text-text-primary-dark`}
             id={props.name}
             {...props}
             {...field}

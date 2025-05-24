@@ -1,31 +1,33 @@
 import { useAppDispatch } from "@app/hooks";
-import { TRANSACTION_TYPES, type Transaction } from "@app/types/transaction";
+import {
+  TRANSACTION_TYPES,
+  type Transaction,
+  type TransactionFormValues,
+} from "@app/types/transaction";
+import Button from "@components/ui/Button";
 import Input from "@components/ui/Input";
+import Select from "@components/ui/Select";
 import { useForm } from "react-hook-form";
 import { addTransaction } from "../slice";
-import Select from "@components/ui/Select";
-
-type FormValues = Omit<Transaction, "amount"> & {
-  amount: string;
-};
+import { capitalizeFirstLetterLocale } from "@lib/format";
 
 export default function TransactionForm() {
   const dispatch = useAppDispatch();
 
-  const form = useForm<FormValues>({
+  const form = useForm<TransactionFormValues>({
     defaultValues: {
       label: "",
       amount: "",
-      type: "Income",
+      type: "income",
     },
     mode: "onBlur",
   });
 
-  const onSubmit = (data: FormValues) => {
-    data.id = crypto.randomUUID();
-    data.date = new Date().toISOString();
+  const onSubmit = (data: TransactionFormValues) => {
     const payload: Transaction = {
       ...data,
+      id: crypto.randomUUID(),
+      date: new Date().toISOString(),
       amount: Number(data.amount),
     };
     dispatch(addTransaction(payload));
@@ -43,7 +45,7 @@ export default function TransactionForm() {
           name="type"
           label="Transaction Type"
           options={TRANSACTION_TYPES.map((type) => ({
-            label: type,
+            label: capitalizeFirstLetterLocale(type),
             value: type,
           }))}
           data-cy="transaction-type"
@@ -61,12 +63,7 @@ export default function TransactionForm() {
           type="number"
           data-cy="transaction-amount"
         />
-        <button
-          data-cy="add-transaction"
-          className="self-center border-2 border-primary px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors duration-200 cursor-pointer"
-        >
-          Add
-        </button>
+        <Button data-cy="add-transaction">Add</Button>
       </div>
     </form>
   );

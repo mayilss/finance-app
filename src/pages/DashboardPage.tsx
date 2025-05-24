@@ -10,8 +10,11 @@ const NetBalanceArea = React.lazy(
 export default function DashboardPage() {
   const totalBalance = useAppSelector(selectTotalBalance);
   return (
-    <div className="px-8 py-16 bg-bg h-screen">
-      <h2 className="text-2xl font-bold" data-cy="net-balance">
+    <div>
+      <h2
+        className="text-2xl font-bold text-text-primary dark:text-text-primary-dark"
+        data-cy="net-balance"
+      >
         Net Balance: {formatCurrency(totalBalance)}
       </h2>
       <Suspense fallback={<div>Loading chart...</div>}>

@@ -12,7 +12,9 @@ export default function Layout() {
     <div className="overflow-x-hidden relative">
       <Header toggleSidebar={toggleSidebar} />
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <Outlet />
+      <div className="px-3 md:px-8 py-16 bg-bg dark:bg-bg-dark min-h-screen">
+        <Outlet />
+      </div>
     </div>
   );
 }

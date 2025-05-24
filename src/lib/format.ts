@@ -15,3 +15,11 @@ export const formatDate = (date: string, withTime: boolean = false) => {
   };
   return new Date(date).toLocaleDateString("de-De", options);
 };
+
+export const capitalizeFirstLetterLocale = (
+  str: string,
+  locale: string = "en",
+): string => {
+  if (!str) return str;
+  return str[0].toLocaleUpperCase(locale) + str.slice(1);
+};

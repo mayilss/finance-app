@@ -21,7 +21,7 @@ export default function TransactionsTable() {
 
   return (
     <Table
-      className="mt-8 overflow-scroll"
+      className="mt-8 overflow-x-auto"
       caption="List of all previous transactions"
     >
       <Table.Head columns={columns} />

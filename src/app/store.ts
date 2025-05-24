@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import transactionReducer from "@features/transactions/slice";
+import transactionsReducer from "@features/transactions/slice";
+import themeReducer from "@features/settings/theme/slice";
 import { loadState, saveState } from "@lib/persist";
 import type { TransactionState } from "./types/transaction";
+import type { ThemeState } from "@app/types/settings";
 
 export type PreloadedState = {
   transactions: TransactionState;
+  theme: ThemeState;
 };
 
 const preloadedState = loadState();
@@ -12,7 +15,8 @@ const preloadedState = loadState();
 export const store = configureStore({
   preloadedState,
   reducer: {
-    transactions: transactionReducer,
+    transactions: transactionsReducer,
+    theme: themeReducer,
   },
 });
 
