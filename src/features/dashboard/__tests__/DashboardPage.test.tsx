@@ -1,7 +1,7 @@
 import type { RootState } from "@app/store";
 import renderWithRedux from "@lib/render-with-redux";
 import DashboardPage from "@pages/DashboardPage";
-import { cleanup, screen } from "@testing-library/react";
+import { cleanup, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
 afterEach(cleanup);
@@ -35,5 +35,18 @@ describe("DashboardPage", () => {
     const netBalanceElement = screen.getByRole("heading");
 
     expect(netBalanceElement.innerText).toBe("Net Balance: $50.00");
+  });
+
+  it("should lazy load Chart", async () => {
+    const { container } = renderWithRedux(<DashboardPage />);
+
+    const loadingElement = screen.getByText("Loading chart...");
+    const chartElement = container.querySelector("[data-testId=chart]");
+
+    expect(loadingElement).toBeDefined();
+
+    await waitFor(() => {
+      expect(chartElement).toBeDefined();
+    });
   });
 });

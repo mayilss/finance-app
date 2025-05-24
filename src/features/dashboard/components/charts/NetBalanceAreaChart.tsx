@@ -14,7 +14,12 @@ export default function NetBalanceArea() {
   const data = useAppSelector(selectNetBalanceChartData);
 
   return (
-    <ResponsiveContainer width="100%" aspect={16 / 9}>
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+      aspect={16 / 9}
+      data-testId="chart"
+    >
       <AreaChart
         width={500}
         height={400}

@@ -27,7 +27,7 @@ export default function TransactionForm() {
     const payload: Transaction = {
       ...data,
       id: crypto.randomUUID(),
-      date: new Date().toISOString(),
+      date: new Date().toLocaleString("en-GB"),
       amount: Number(data.amount),
     };
     dispatch(addTransaction(payload));

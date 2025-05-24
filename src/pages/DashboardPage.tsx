@@ -3,8 +3,8 @@ import { selectTotalBalance } from "@features/transactions/selectors";
 import { formatCurrency } from "@lib/format";
 import React, { Suspense } from "react";
 
-const NetBalanceArea = React.lazy(
-  () => import("@features/dashboard/components/charts/NetBalanceArea"),
+const NetBalanceAreaChart = React.lazy(
+  () => import("@features/dashboard/components/charts/NetBalanceAreaChart"),
 );
 
 export default function DashboardPage() {
@@ -18,7 +18,7 @@ export default function DashboardPage() {
         Net Balance: {formatCurrency(totalBalance)}
       </h2>
       <Suspense fallback={<div>Loading chart...</div>}>
-        <NetBalanceArea />
+        <NetBalanceAreaChart />
       </Suspense>
     </div>
   );

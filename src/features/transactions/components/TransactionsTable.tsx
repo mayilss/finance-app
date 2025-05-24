@@ -1,10 +1,10 @@
 import { useAppDispatch, useAppSelector } from "@app/hooks";
+import { TRANSACTION_TYPES } from "@app/types/transaction";
 import Table from "@components/ui/Table";
-import { formatCurrency, formatDate } from "@lib/format";
-import { removeTransaction } from "../slice";
+import { formatCurrency } from "@lib/format";
 import React from "react";
 import { selectTransactions } from "../selectors";
-import { TRANSACTION_TYPES } from "@app/types/transaction";
+import { removeTransaction } from "../slice";
 
 export default function TransactionsTable() {
   const transactions = useAppSelector(selectTransactions);
@@ -33,7 +33,7 @@ export default function TransactionsTable() {
             cells={[
               transaction.label,
               formatCurrency(transaction.amount),
-              formatDate(transaction.date),
+              transaction.date,
               <span
                 key={transaction.id}
                 className={

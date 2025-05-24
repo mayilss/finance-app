@@ -1,18 +1,18 @@
 import type { RootState } from "@app/store";
-import { formatDate } from "@lib/format";
+import type { ChartData } from "@app/types/charts";
+import type { TransactionState } from "@app/types/transaction";
 import { createSelector } from "@reduxjs/toolkit";
 
-export const selectTransactionsState = createSelector(
-  (state) => state,
-  (state: RootState) => state.transactions,
-);
+export const selectTransactionsState: (state: RootState) => TransactionState = (
+  state: RootState,
+) => state.transactions;
 
 export const selectTransactions = createSelector(
   [selectTransactionsState],
   (transactions) => Object.values(transactions),
 );
 
-export const selectTotalIncome = createSelector(
+export const selectTotalIncome: (state: RootState) => number = createSelector(
   [selectTransactions],
   (transactions) => {
     return transactions
@@ -21,7 +21,7 @@ export const selectTotalIncome = createSelector(
   },
 );
 
-export const selectTotalExpense = createSelector(
+export const selectTotalExpense: (state: RootState) => number = createSelector(
   [selectTransactions],
   (transactions) => {
     return transactions
@@ -30,16 +30,15 @@ export const selectTotalExpense = createSelector(
   },
 );
 
-export const selectTotalBalance = createSelector(
+export const selectTotalBalance: (state: RootState) => number = createSelector(
   [selectTotalIncome, selectTotalExpense],
   (totalIncome, totalExpense) => {
     return totalIncome - totalExpense;
   },
 );
 
-export const selectNetBalanceChartData = createSelector(
-  [selectTransactions],
-  (transactions) => {
+export const selectNetBalanceChartData: (state: RootState) => ChartData =
+  createSelector([selectTransactions], (transactions) => {
     let netBalance = 0;
 
     const data = transactions.map((transaction) => {
@@ -49,11 +48,10 @@ export const selectNetBalanceChartData = createSelector(
         netBalance -= transaction.amount;
       }
       return {
-        name: formatDate(transaction.date, true),
+        name: transaction.date,
         uv: netBalance,
       };
     });
 
     return data;
-  },
-);
+  });
