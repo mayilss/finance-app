@@ -4,6 +4,7 @@ import themeReducer from "@features/settings/theme/slice";
 import { loadState, saveState } from "@lib/persist";
 import type { TransactionState } from "./types/transaction";
 import type { ThemeState } from "@app/types/settings";
+import { debounce } from "@lib/debounce";
 
 export type PreloadedState = {
   transactions: TransactionState;
@@ -20,9 +21,11 @@ export const store = configureStore({
   },
 });
 
+const debouncedSaveState = debounce(saveState, 300);
+
 store.subscribe(() => {
   const state = store.getState();
-  saveState(state);
+  debouncedSaveState(state);
 });
 
 export type RootState = ReturnType<typeof store.getState>;

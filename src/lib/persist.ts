@@ -1,12 +1,9 @@
 import { type PreloadedState, type RootState } from "@app/store";
-import { debounce } from "./debounce";
 
 export const saveState = (state: RootState) => {
   try {
     const serializedState = JSON.stringify(state);
-    debounce(() => {
-      localStorage.setItem("state", serializedState);
-    }, 300)();
+    localStorage.setItem("state", serializedState);
   } catch (err) {
     console.error("Error saving state to localStorage:", err);
   }
