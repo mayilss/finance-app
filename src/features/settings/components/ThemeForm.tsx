@@ -21,7 +21,7 @@ export default function ThemeForm() {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="mt-8 space-y-4 max-w-lg mx-auto"
+      className="flex flex-col mt-8 space-y-4 max-w-lg mx-auto"
     >
       <Select
         control={form.control}
@@ -32,7 +32,7 @@ export default function ThemeForm() {
         }))}
         label="Theme mode"
       />
-      <Button>Apply</Button>
+      <Button aria-label="Apply theme mode">Apply</Button>
     </form>
   );
 }

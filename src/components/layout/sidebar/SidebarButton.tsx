@@ -7,6 +7,7 @@ export default function SidebarButton({ toggleSidebar }: SidebarButtonProps) {
     <button
       className="text-primary hover:text-primary-hover focus:outline-none"
       onClick={toggleSidebar}
+      aria-label="Toggle sidebar"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

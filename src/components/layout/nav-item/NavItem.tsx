@@ -9,7 +9,11 @@ interface NavItemProps {
 export default function NavItem({ to, label }: NavItemProps) {
   return (
     <li>
-      <NavLink to={to} className={getNavLinkStyle}>
+      <NavLink
+        to={to}
+        className={getNavLinkStyle}
+        aria-label={`Link to ${label}`}
+      >
         {label}
       </NavLink>
     </li>

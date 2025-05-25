@@ -63,7 +63,9 @@ export default function TransactionForm() {
           type="number"
           data-cy="transaction-amount"
         />
-        <Button data-cy="add-transaction">Add</Button>
+        <Button aria-label="Add transaction" data-cy="add-transaction">
+          Add
+        </Button>
       </div>
     </form>
   );

@@ -9,7 +9,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
   return (
-    <div
+    <aside
       className={`fixed right-0 top-0 h-screen w-xs bg-bg dark:bg-bg-dark text-white p-4 z-10 ${isOpen ? "" : "translate-x-full"} duration-300 ease-in-out rounded-l-lg border-l-2 border-primary`}
     >
       <div className="text-right">
@@ -22,6 +22,6 @@ export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
           ))}
         </ul>
       </nav>
-    </div>
+    </aside>
   );
 }

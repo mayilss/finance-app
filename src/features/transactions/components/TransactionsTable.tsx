@@ -5,6 +5,7 @@ import { capitalizeFirstLetterLocale, formatCurrency } from "@lib/format";
 import React from "react";
 import { selectTransactions } from "../selectors";
 import { removeTransaction } from "../slice";
+import Button from "@components/ui/Button";
 
 export default function TransactionsTable() {
   const transactions = useAppSelector(selectTransactions);
@@ -44,15 +45,16 @@ export default function TransactionsTable() {
               >
                 {capitalizeFirstLetterLocale(transaction.type)}
               </span>,
-              <button
+              <Button
+                variant="error"
                 key={transaction.id}
                 onClick={() => {
                   onDelete(transaction.id);
                 }}
-                className="border-2 border-error px-4 py-2 bg-error text-white rounded-lg hover:bg-red-600 transition-colors duration-200 cursor-pointer"
+                aria-label={`Delete transaction ${transaction.label}`}
               >
                 Delete
-              </button>,
+              </Button>,
             ]}
           />
         ))}
