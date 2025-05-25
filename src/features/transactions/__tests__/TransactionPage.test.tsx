@@ -1,5 +1,5 @@
 import type { TransactionFormValues } from "@app/types/transaction";
-import { formatCurrency } from "@lib/format";
+import { capitalizeFirstLetterLocale, formatCurrency } from "@lib/format";
 import renderWithRedux from "@lib/render-with-redux";
 import TransactionPage from "@pages/TransactionsPage";
 import { cleanup, screen } from "@testing-library/react";
@@ -48,7 +48,7 @@ describe("TransactionPage integration", () => {
       screen.getByText(formatCurrency(Number(testData.amount))),
     ).toBeDefined();
     expect(
-      screen.getByText(testData.type, {
+      screen.getByText(capitalizeFirstLetterLocale(testData.type), {
         selector: "span",
       }),
     ).toBeDefined();
