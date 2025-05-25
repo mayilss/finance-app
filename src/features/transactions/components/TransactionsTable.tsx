@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@app/hooks";
 import { TRANSACTION_TYPES } from "@app/types/transaction";
 import Table from "@components/ui/Table";
-import { formatCurrency } from "@lib/format";
+import { capitalizeFirstLetterLocale, formatCurrency } from "@lib/format";
 import React from "react";
 import { selectTransactions } from "../selectors";
 import { removeTransaction } from "../slice";
@@ -42,7 +42,7 @@ export default function TransactionsTable() {
                     : "text-error"
                 }
               >
-                {transaction.type}
+                {capitalizeFirstLetterLocale(transaction.type)}
               </span>,
               <button
                 key={transaction.id}
