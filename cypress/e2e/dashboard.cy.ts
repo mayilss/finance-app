@@ -1,3 +1,5 @@
+import type { TransactionFormValues } from "../../src/app/types/transaction";
+
 describe("Dashboard Transactions Flow", function () {
   beforeEach(() => {
     cy.fixture("transactions").as("transactions");
@@ -12,25 +14,24 @@ describe("Dashboard Transactions Flow", function () {
   it("should add and delete a transaction and update net balance", function () {
     cy.visit("/");
     cy.get('[data-cy="net-balance"]').should("have.text", "Net Balance: $0.00");
+    cy.get('[data-cy="loading-chart"]').should("be.visible");
+    cy.get('[data-cy="chart"]').should(
+      "have.text",
+      "No transaction added yet.",
+    );
 
     cy.visit("/transactions");
 
-    // Add transactions
-    this.transactions.forEach((transaction) => {
+    this.transactions.forEach((transaction: TransactionFormValues) => {
+      // Add transactions
       cy.addTransaction(transaction);
     });
 
     // Verify the transactions are added
-    this.transactions.forEach((transaction) => {
-      cy.get('[data-cy="transaction-row"]').should(
-        "contain",
-        transaction.label,
+    this.transactions.forEach((transaction: TransactionFormValues) => {
+      cy.get(`[data-cy="transaction-row-${transaction.label}"]`).should(
+        "be.visible",
       );
-      cy.get('[data-cy="transaction-row"]').should(
-        "contain",
-        transaction.amount,
-      );
-      // cy.get('[data-cy="transaction-row"]').should("contain", transaction.type);
     });
 
     // Verify the total results are displayed
@@ -58,19 +59,19 @@ describe("Dashboard Transactions Flow", function () {
       "have.text",
       "Net Balance: $100.00",
     );
+    cy.get('[data-cy="chart"]').should(
+      "not.contain",
+      "No transaction added yet.",
+    );
+    cy.get('[data-cy="chart"]').should("be.visible");
 
     cy.visit("/transactions");
 
     // Delete the Income transaction
-    cy.get('[data-cy="transaction-row"]')
-      .contains("Groceries")
-      .parent()
-      .find("button")
-      .click();
+    cy.get('[data-cy="transaction-row-Groceries"]').find("button").click();
 
     // Verify the transaction is deleted
-    cy.get('[data-cy="transaction-row"]').should("not.contain", "Groceries");
-    cy.get('[data-cy="transaction-row"]').should("contain", "Bonus");
+    cy.get('[data-cy="transaction-row-Groceries"]').should("not.exist");
 
     // Verify the net balance is updated after deletion
     cy.window()
@@ -87,5 +88,10 @@ describe("Dashboard Transactions Flow", function () {
       "have.text",
       "Net Balance: $150.00",
     );
+    cy.get('[data-cy="chart"]').should(
+      "not.contain",
+      "No transaction added yet.",
+    );
+    cy.get('[data-cy="chart"]').should("be.visible");
   });
 });

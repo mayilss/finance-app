@@ -17,7 +17,7 @@ export default function DashboardPage() {
       >
         Net Balance: {formatCurrency(totalBalance)}
       </h2>
-      <Suspense fallback={<div>Loading chart...</div>}>
+      <Suspense fallback={<div data-cy="loading-chart">Loading chart...</div>}>
         <NetBalanceAreaChart />
       </Suspense>
     </div>

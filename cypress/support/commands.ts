@@ -1,16 +1,7 @@
-/// <reference types="cypress" />
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace Cypress {
-  interface Chainable<Subject> {
-    addTransaction(transaction: {
-      type: string;
-      label: string;
-      amount: string;
-    }): Chainable<Subject>;
-  }
-}
+/// <reference types="./index.d.ts" />
+import { type TransactionFormValues } from "../../src/app/types/transaction";
 
-Cypress.Commands.add("addTransaction", (transaction) => {
+Cypress.Commands.add("addTransaction", (transaction: TransactionFormValues) => {
   cy.get('[data-cy="transaction-type"]').select(transaction.type);
   cy.get('[data-cy="transaction-label"]').type(transaction.label);
   cy.get('[data-cy="transaction-amount"]').type(transaction.amount);

@@ -41,7 +41,7 @@ describe("DashboardPage", () => {
     const { container } = renderWithRedux(<DashboardPage />);
 
     const loadingElement = screen.getByText("Loading chart...");
-    const chartElement = container.querySelector("[data-testId=chart]");
+    const chartElement = container.querySelector("[data-cy=chart]");
 
     expect(loadingElement).toBeDefined();
 
