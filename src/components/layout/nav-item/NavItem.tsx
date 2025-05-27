@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import getNavLinkStyle from "./get-nav-link-style";
 
@@ -6,7 +7,7 @@ interface NavItemProps {
   label: string;
 }
 
-export default function NavItem({ to, label }: NavItemProps) {
+function NavItem({ to, label }: NavItemProps) {
   return (
     <li>
       <NavLink
@@ -19,3 +20,5 @@ export default function NavItem({ to, label }: NavItemProps) {
     </li>
   );
 }
+
+export default React.memo(NavItem);

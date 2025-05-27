@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Area,
   CartesianGrid,
@@ -9,7 +10,7 @@ import {
 } from "recharts";
 import type { CategoricalChartProps } from "recharts/types/chart/generateCategoricalChart";
 
-export default function AreaChart(props: CategoricalChartProps) {
+function AreaChart(props: CategoricalChartProps) {
   return (
     <ResponsiveContainer width="100%" height="100%" aspect={16 / 9}>
       <RechartAreaChart
@@ -32,3 +33,5 @@ export default function AreaChart(props: CategoricalChartProps) {
     </ResponsiveContainer>
   );
 }
+
+export default React.memo(AreaChart);

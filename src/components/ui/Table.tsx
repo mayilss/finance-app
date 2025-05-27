@@ -1,3 +1,5 @@
+import React from "react";
+
 interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   caption: string;
 }
@@ -13,9 +15,9 @@ export default function Table({ children, caption, ...props }: TableProps) {
   );
 }
 
-Table.Head = TableHead;
+Table.Head = React.memo(TableHead);
 Table.Body = TableBody;
-Table.Row = TableRow;
+Table.Row = React.memo(TableRow);
 
 interface ITableHeadProps {
   columns: Array<string>;

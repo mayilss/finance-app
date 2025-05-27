@@ -5,9 +5,9 @@ import Sidebar from "./sidebar/Sidebar";
 
 export default function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const toggleSidebar = () => {
+  const toggleSidebar = React.useCallback(() => {
     setIsSidebarOpen((prev) => !prev);
-  };
+  }, []);
   return (
     <div className="overflow-x-hidden relative">
       <Header toggleSidebar={toggleSidebar} />

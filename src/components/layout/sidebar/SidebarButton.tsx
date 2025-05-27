@@ -1,8 +1,10 @@
+import React from "react";
+
 interface SidebarButtonProps {
   toggleSidebar: () => void;
 }
 
-export default function SidebarButton({ toggleSidebar }: SidebarButtonProps) {
+function SidebarButton({ toggleSidebar }: SidebarButtonProps) {
   return (
     <button
       className="text-primary hover:text-primary-hover focus:outline-none"
@@ -26,3 +28,5 @@ export default function SidebarButton({ toggleSidebar }: SidebarButtonProps) {
     </button>
   );
 }
+
+export default React.memo(SidebarButton);
