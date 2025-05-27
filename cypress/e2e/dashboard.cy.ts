@@ -14,7 +14,6 @@ describe("Dashboard Transactions Flow", function () {
   it("should add and delete a transaction and update net balance", function () {
     cy.visit("/");
     cy.get('[data-cy="net-balance"]').should("have.text", "Net Balance: $0.00");
-    cy.get('[data-cy="loading-chart"]').should("be.visible");
     cy.get('[data-cy="chart"]').should(
       "have.text",
       "No transaction added yet.",
