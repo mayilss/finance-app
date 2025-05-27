@@ -1,9 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import DashboardPage from "@pages/DashboardPage";
-import DebtsPage from "@pages/DebtsPage";
 import SettingsPage from "@pages/SettingsPage";
-import TransactionsPage from "@pages/TransactionsPage";
 import Layout from "@components/layout/Layout";
+import React, { Suspense } from "react";
+import Spinner from "@components/ui/Spinner";
+
+const DashboardPage = React.lazy(() => import("@pages/DashboardPage"));
+const TransactionsPage = React.lazy(() => import("@pages/TransactionsPage"));
+const DebtsPage = React.lazy(() => import("@pages/DebtsPage"));
 
 const router = createBrowserRouter([
   {
@@ -11,15 +14,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <DashboardPage />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <DashboardPage />
+          </Suspense>
+        ),
       },
       {
         path: "/transactions",
-        element: <TransactionsPage />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <TransactionsPage />
+          </Suspense>
+        ),
       },
       {
         path: "/debts",
-        element: <DebtsPage />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <DebtsPage />
+          </Suspense>
+        ),
       },
       {
         path: "/settings",

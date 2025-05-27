@@ -40,7 +40,7 @@ describe("DashboardPage", () => {
   it("should lazy load Chart", async () => {
     const { container } = renderWithRedux(<DashboardPage />);
 
-    const loadingElement = screen.getByText("Loading chart...");
+    const loadingElement = container.querySelector("[data-cy=loading-chart]");
     const chartElement = container.querySelector("[data-cy=chart]");
 
     expect(loadingElement).toBeDefined();

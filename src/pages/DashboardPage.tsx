@@ -1,4 +1,5 @@
 import { useAppSelector } from "@app/hooks";
+import Spinner from "@components/ui/Spinner";
 import { selectTotalBalance } from "@features/transactions/selectors";
 import { formatCurrency } from "@lib/format";
 import React, { Suspense } from "react";
@@ -17,7 +18,7 @@ export default function DashboardPage() {
       >
         Net Balance: {formatCurrency(totalBalance)}
       </h2>
-      <Suspense fallback={<div data-cy="loading-chart">Loading chart...</div>}>
+      <Suspense fallback={<Spinner data-cy="loading-chart" />}>
         <NetBalanceAreaChart />
       </Suspense>
     </div>
