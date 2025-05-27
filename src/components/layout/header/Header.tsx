@@ -1,5 +1,4 @@
-import NAV_LIST from "../nav-list";
-import NavItem from "../nav-item/NavItem";
+import Nav from "../nav/Nav";
 import SidebarButton from "../sidebar/SidebarButton";
 
 interface HeaderProps {
@@ -14,13 +13,9 @@ export default function Header({ toggleSidebar }: HeaderProps) {
           uFinance
         </h1>
       </div>
-      <nav role="navigation" className="hidden md:block">
-        <ul className="flex space-x-4">
-          {NAV_LIST.map((item) => (
-            <NavItem key={item.to} to={item.to} label={item.label} />
-          ))}
-        </ul>
-      </nav>
+      <div className="hidden md:block">
+        <Nav place="header" />
+      </div>
       <div className="md:hidden">
         <SidebarButton toggleSidebar={toggleSidebar} />
       </div>

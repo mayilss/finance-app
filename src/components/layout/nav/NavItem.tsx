@@ -8,12 +8,18 @@ interface NavItemProps {
 }
 
 function NavItem({ to, label }: NavItemProps) {
+  const handleMouseEnter = React.useCallback(() => {
+    if (to === "/") {
+      import("@pages/DashboardPage");
+    }
+  }, [to]);
   return (
     <li>
       <NavLink
         to={to}
         className={getNavLinkStyle}
         aria-label={`Link to ${label}`}
+        onMouseEnter={handleMouseEnter}
       >
         {label}
       </NavLink>
