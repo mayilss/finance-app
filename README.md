@@ -1,4 +1,5 @@
 [![CI Status](https://github.com/mayilss/finance-app/actions/workflows/ci.yml/badge.svg)](https://github.com/mayilss/finance-app/actions/workflows/ci.yml)
+[![Lighthouse CI](https://github.com/mayilss/finance-app/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/mayilss/finance-app/actions/workflows/lighthouse.yml)
 
 # Finance App 🔢💰
 
@@ -37,6 +38,7 @@ Tracks daily expenses, debts, and shows aggregate spending/income over time.
 | `npm run coverage`   | Runs Vitest with coverage report               |
 | `npm run cy:open`    | Opens Cypress Test Runner (interactive)        |
 | `npm run cy:run`     | Runs Cypress E2E tests in headless mode        |
+| `npm run lhci`       | Runs Lighthouse CI                             |
 
 ### State Management
 
