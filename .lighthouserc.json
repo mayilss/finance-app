@@ -15,7 +15,7 @@
       }
     },
     "upload": {
-      "target": "github-check"
+      "target": "temporary-public-storage"
     }
   }
 }
