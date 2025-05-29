@@ -1,6 +1,9 @@
 import { useAppSelector } from "@app/hooks";
-import AreaChart from "@components/ui/AreaChart";
+import Spinner from "@components/ui/Spinner";
 import { selectNetBalanceChartData } from "@features/transactions/selectors";
+import React, { Suspense } from "react";
+
+const AreaChart = React.lazy(() => import("@components/ui/AreaChart"));
 
 export default function NetBalanceArea() {
   const data = useAppSelector(selectNetBalanceChartData);
@@ -14,9 +17,12 @@ export default function NetBalanceArea() {
         No transaction added yet.
       </p>
     );
+
   return (
     <div data-cy="chart">
-      <AreaChart data={data} />
+      <Suspense fallback={<Spinner data-cy="loading-chart" />}>
+        <AreaChart data={data} />
+      </Suspense>
     </div>
   );
 }

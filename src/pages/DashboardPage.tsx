@@ -1,12 +1,7 @@
 import { useAppSelector } from "@app/hooks";
-import Spinner from "@components/ui/Spinner";
 import { selectTotalBalance } from "@features/transactions/selectors";
 import { formatCurrency } from "@lib/format";
-import React, { Suspense } from "react";
-
-const NetBalanceAreaChart = React.lazy(
-  () => import("@features/dashboard/components/charts/NetBalanceAreaChart"),
-);
+import NetBalanceAreaChart from "@features/dashboard/components/charts/NetBalanceAreaChart";
 
 export default function DashboardPage() {
   const totalBalance = useAppSelector(selectTotalBalance);
@@ -18,9 +13,7 @@ export default function DashboardPage() {
       >
         Net Balance: {formatCurrency(totalBalance)}
       </h2>
-      <Suspense fallback={<Spinner data-cy="loading-chart" />}>
-        <NetBalanceAreaChart />
-      </Suspense>
+      <NetBalanceAreaChart />
     </div>
   );
 }
