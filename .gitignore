@@ -27,3 +27,5 @@ coverage
 
 cypress/screenshots
 cypress/downloads
+
+.lighthouseci

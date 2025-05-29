@@ -18,6 +18,9 @@ export default defineConfig([
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   pluginCypress.configs.recommended,
-  { rules: { "react/react-in-jsx-scope": "off" } },
+  {
+    rules: { "react/react-in-jsx-scope": "off" },
+    ignores: ["**/node_modules/**", "**/dist/**"],
+  },
   { settings: { react: { version: "detect" } } },
 ]);
