@@ -40,6 +40,10 @@ Tracks daily expenses, debts, and shows aggregate spending/income over time.
 | `npm run cy:run`     | Runs Cypress E2E tests in headless mode        |
 | `npm run lhci`       | Runs Lighthouse CI                             |
 
+Before running commands like `npm run lint` or `npm test`, ensure you're using
+**Node 18+** and that dependencies are installed (or restored from your CI
+cache) with `npm install`.
+
 ### State Management
 
 This project uses Redux Toolkit for state management, with two slices:

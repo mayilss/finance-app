@@ -1,10 +1,11 @@
 import { useAppSelector } from "@app/hooks";
+import NetBalanceAreaChart from "@features/dashboard/components/charts/NetBalanceAreaChart";
 import { selectTotalBalance } from "@features/transactions/selectors";
 import { formatCurrency } from "@lib/format";
-import NetBalanceAreaChart from "@features/dashboard/components/charts/NetBalanceAreaChart";
 
 export default function DashboardPage() {
   const totalBalance = useAppSelector(selectTotalBalance);
+
   return (
     <div>
       <h2
