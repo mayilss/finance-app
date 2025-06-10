@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Nav from "../nav/Nav";
 import SidebarButton from "./SidebarButton";
 import React from "react";
+import UserInfoDropdown from "../user-info/UserInfoDropdown";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -18,8 +19,9 @@ export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
   );
   return (
     <aside className={classes}>
-      <div className="text-right">
+      <div className="flex items-center justify-between border-b border-border-dark dark:border-border mb-4 pb-2">
         <SidebarButton toggleSidebar={toggleSidebar} />
+        <UserInfoDropdown />
       </div>
       <Nav place="sidebar" />
     </aside>

@@ -1,16 +1,27 @@
-import { createBrowserRouter } from "react-router-dom";
-import SettingsPage from "@pages/SettingsPage";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 import Layout from "@components/layout/Layout";
-import React, { Suspense } from "react";
 import Spinner from "@components/ui/Spinner";
+import LoginPage from "@pages/LoginPage";
+import NotFoundPage from "@pages/NotFoundPage";
+import SettingsPage from "@pages/SettingsPage";
+import React, { Suspense } from "react";
+import { createBrowserRouter } from "react-router-dom";
 
 const DashboardPage = React.lazy(() => import("@pages/DashboardPage"));
 const TransactionsPage = React.lazy(() => import("@pages/TransactionsPage"));
 const DebtsPage = React.lazy(() => import("@pages/DebtsPage"));
 
+const PrivateLayout = withAuthenticationRequired(Layout, {
+  onRedirecting: () => <Spinner />,
+});
+
 const router = createBrowserRouter([
   {
-    element: <Layout />,
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    element: <PrivateLayout />,
     children: [
       {
         path: "/",
@@ -20,6 +31,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+
       {
         path: "/transactions",
         element: (
@@ -41,6 +53,10 @@ const router = createBrowserRouter([
         element: <SettingsPage />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 
