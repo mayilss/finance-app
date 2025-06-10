@@ -12,7 +12,12 @@ describe("Dashboard Transactions Flow", function () {
   });
 
   it("should add and delete a transaction and update net balance", function () {
-    cy.visit("/");
+    cy.visit("/login");
+    cy.get('[data-cy="username"]').type("john");
+    cy.get('[data-cy="password"]').type("0000");
+    cy.get('[data-cy="login-button"]').click();
+    cy.url().should("include", "/");
+
     cy.get('[data-cy="net-balance"]').should("have.text", "Net Balance: $0.00");
     cy.get('[data-cy="chart"]').should(
       "have.text",

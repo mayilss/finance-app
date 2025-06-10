@@ -35,6 +35,7 @@ export default function LoginForm() {
         label="Username"
         placeholder="Enter your username"
         autoFocus
+        data-cy="username"
       />
       <Input
         control={form.control}
@@ -43,8 +44,11 @@ export default function LoginForm() {
         type="password"
         placeholder="Enter your password"
         autoComplete="current-password"
+        data-cy="password"
       />
-      <Button className="w-full">Login</Button>
+      <Button className="w-full" data-cy="login-button">
+        Login
+      </Button>
     </form>
   );
 }
