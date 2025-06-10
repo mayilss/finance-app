@@ -1,15 +1,12 @@
-import {
-  type Transaction,
-  type TransactionState,
-} from "@features/transactions/types";
 import transactionReducer, {
   addTransaction,
   removeTransaction,
 } from "@features/transactions/slice";
-import { cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-
-afterEach(cleanup);
+import {
+  type Transaction,
+  type TransactionState,
+} from "@features/transactions/types";
+import { describe, expect, it } from "vitest";
 
 describe("addTransaction", () => {
   it("should handle adding a new transaction", () => {

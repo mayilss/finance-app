@@ -3,6 +3,8 @@ import SettingsPage from "@pages/SettingsPage";
 import Layout from "@components/layout/Layout";
 import React, { Suspense } from "react";
 import Spinner from "@components/ui/Spinner";
+import LoginPage from "@pages/LoginPage";
+import ProtectedRoute from "@components/ProtectedRoute";
 
 const DashboardPage = React.lazy(() => import("@pages/DashboardPage"));
 const TransactionsPage = React.lazy(() => import("@pages/TransactionsPage"));
@@ -10,7 +12,15 @@ const DebtsPage = React.lazy(() => import("@pages/DebtsPage"));
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/",

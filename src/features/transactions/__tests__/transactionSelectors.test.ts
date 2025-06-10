@@ -1,7 +1,6 @@
 import type { RootState } from "@app/store";
 import { type Transaction } from "@features/transactions/types";
-import { cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   selectNetBalanceChartData,
   selectTotalBalance,
@@ -11,7 +10,6 @@ import {
 } from "../selectors";
 
 describe("select transactions", () => {
-  afterEach(cleanup);
   const state: RootState = {
     transactions: {
       1: {
@@ -38,6 +36,12 @@ describe("select transactions", () => {
     },
     theme: {
       mode: "system",
+    },
+    auth: {
+      user: {
+        username: "john",
+      },
+      error: null,
     },
   };
   it("should select all transactions", () => {

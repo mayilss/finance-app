@@ -8,7 +8,10 @@ interface DropdownProps {
 }
 
 export default function Dropdown({ children, className }: DropdownProps) {
-  const classes = clsx("relative", className);
+  const classes = clsx(
+    "relative px-4 py-2 border-[1px] border-border-dark dark:border-border rounded-lg",
+    className,
+  );
 
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
@@ -53,7 +56,7 @@ function DropdownMenu({ children }: DropdownMenuProps) {
 
   if (!isOpen) return null;
   return (
-    <div className="absolute w-full bg-bg dark:bg-bg-dark border border-border-dark dark:border-border rounded-lg shadow-lg p-4 top-[calc(100%+20px)] right-0">
+    <div className="absolute bg-bg dark:bg-bg-dark border border-border-dark dark:border-border rounded-lg shadow-lg p-4 top-[calc(100%+20px)] right-0">
       <ul className="flex flex-col w-full items-end space-y-2 text-text-primary dark:text-text-primary-dark">
         {children}
       </ul>
