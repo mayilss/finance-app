@@ -1,5 +1,5 @@
 import type { RootState } from "@app/store";
-import { type Transaction } from "@app/types/transaction";
+import { type Transaction } from "@features/transactions/types";
 import { cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import {

@@ -1,4 +1,4 @@
-import type { TransactionFormValues } from "@app/types/transaction";
+import type { TransactionFormValues } from "@features/transactions/types";
 import { capitalizeFirstLetterLocale, formatCurrency } from "@lib/format";
 import renderWithRedux from "@lib/render-with-redux";
 import TransactionPage from "@pages/TransactionsPage";

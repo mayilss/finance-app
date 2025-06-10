@@ -1,11 +1,11 @@
 import { useAppDispatch, useAppSelector } from "@app/hooks";
-import { THEME_MODES, type ThemeState } from "@app/types/settings";
+import { THEME_MODES, type ThemeState } from "@features/settings/types";
 import Button from "@components/ui/Button";
 import Select from "@components/ui/Select";
 import { capitalizeFirstLetterLocale } from "@lib/format";
 import { useForm } from "react-hook-form";
-import { setTheme } from "../theme/slice";
-import { selectTheme } from "../theme/selectors";
+import { setTheme } from "../slice";
+import { selectTheme } from "../selectors";
 
 export default function ThemeForm() {
   const theme = useAppSelector(selectTheme);

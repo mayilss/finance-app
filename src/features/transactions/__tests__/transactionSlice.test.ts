@@ -1,7 +1,7 @@
 import {
   type Transaction,
   type TransactionState,
-} from "@/app/types/transaction";
+} from "@features/transactions/types";
 import transactionReducer, {
   addTransaction,
   removeTransaction,

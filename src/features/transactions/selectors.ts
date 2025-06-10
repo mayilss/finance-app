@@ -1,6 +1,6 @@
 import type { RootState } from "@app/store";
-import type { ChartData } from "@app/types/charts";
-import type { TransactionState } from "@app/types/transaction";
+import type { ChartData } from "@features/dashboard/types";
+import type { TransactionState } from "@features/transactions/types";
 import { createSelector } from "@reduxjs/toolkit";
 
 export const selectTransactionsState: (state: RootState) => TransactionState = (

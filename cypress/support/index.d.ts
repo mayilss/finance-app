@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { type TransactionFormValues } from "../../src/app/types/transaction";
+import { type TransactionFormValues } from "../../src/features/transactions/types";
 
 declare global {
   namespace Cypress {

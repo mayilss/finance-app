@@ -1,7 +1,7 @@
 import { useAppSelector } from "@app/hooks";
-import type { ThemeState } from "@app/types/settings";
+import type { ThemeState } from "@features/settings/types";
 import React from "react";
-import { selectTheme } from "../theme/selectors";
+import { selectTheme } from "../selectors";
 
 export default function ThemeSync() {
   const theme = useAppSelector(selectTheme);

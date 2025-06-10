@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import transactionsReducer from "@features/transactions/slice";
-import themeReducer from "@features/settings/theme/slice";
+import themeReducer from "@features/settings/slice";
 import { loadState, saveState } from "@lib/persist";
-import type { TransactionState } from "./types/transaction";
-import type { ThemeState } from "@app/types/settings";
+import type { TransactionState } from "../features/transactions/types";
+import type { ThemeState } from "@features/settings/types";
 import { debounce } from "@lib/debounce";
 
 export type PreloadedState = {

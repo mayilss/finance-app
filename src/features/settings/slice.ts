@@ -1,4 +1,4 @@
-import { type Theme, type ThemeState } from "@app/types/settings";
+import { type Theme, type ThemeState } from "@features/settings/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: ThemeState = {
