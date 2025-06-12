@@ -1,5 +1,5 @@
 /// <reference types="./index.d.ts" />
-import { type TransactionFormValues } from "../../src/app/types/transaction";
+import { type TransactionFormValues } from "../../src/features/transactions/types";
 
 Cypress.Commands.add("addTransaction", (transaction: TransactionFormValues) => {
   cy.get('[data-cy="transaction-type"]').select(transaction.type);

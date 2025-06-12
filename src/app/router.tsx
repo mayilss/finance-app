@@ -5,6 +5,7 @@ import React, { Suspense } from "react";
 import Spinner from "@components/ui/Spinner";
 import LoginPage from "@pages/LoginPage";
 import ProtectedRoute from "@components/ProtectedRoute";
+import NotFoundPage from "@pages/NotFoundPage";
 
 const DashboardPage = React.lazy(() => import("@pages/DashboardPage"));
 const TransactionsPage = React.lazy(() => import("@pages/TransactionsPage"));
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         element: <SettingsPage />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 
