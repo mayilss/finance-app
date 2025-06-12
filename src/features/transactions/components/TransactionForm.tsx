@@ -1,18 +1,16 @@
-import { useAppDispatch } from "@app/hooks";
-import {
-  TRANSACTION_TYPES,
-  type Transaction,
-  type TransactionFormValues,
-} from "@features/transactions/types";
 import Button from "@components/ui/Button";
 import Input from "@components/ui/Input";
 import Select from "@components/ui/Select";
-import { useForm } from "react-hook-form";
-import { addTransaction } from "../slice";
+import {
+  TRANSACTION_TYPES,
+  type TransactionFormValues,
+} from "@features/transactions/types";
 import { capitalizeFirstLetterLocale } from "@lib/format";
+import { useForm } from "react-hook-form";
+import { useAddTransaction } from "../useAddTransaction";
 
 export default function TransactionForm() {
-  const dispatch = useAppDispatch();
+  const addTransaction = useAddTransaction();
 
   const form = useForm<TransactionFormValues>({
     defaultValues: {
@@ -24,13 +22,7 @@ export default function TransactionForm() {
   });
 
   const onSubmit = (data: TransactionFormValues) => {
-    const payload: Transaction = {
-      ...data,
-      id: crypto.randomUUID(),
-      date: new Date().toLocaleString("en-GB"),
-      amount: Number(data.amount),
-    };
-    dispatch(addTransaction(payload));
+    addTransaction(data);
     form.reset();
   };
 
