@@ -1,14 +1,11 @@
-import { useAppDispatch } from "@app/hooks";
 import Button from "@components/ui/Button";
 import Input from "@components/ui/Input";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import type { LoginFormValues } from "../types";
-import { loginAsync } from "../slice";
+import { useLogin } from "../useLogin";
 
 export default function LoginForm() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const login = useLogin();
   const form = useForm<LoginFormValues>({
     defaultValues: {
       username: "",
@@ -18,8 +15,7 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      await dispatch(loginAsync(data)).unwrap();
-      navigate("/");
+      await login(data);
     } catch (error) {
       form.setError("password", { message: error as string });
     }
