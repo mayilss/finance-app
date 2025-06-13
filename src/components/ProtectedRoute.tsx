@@ -1,5 +1,4 @@
-import { useAppSelector } from "@app/hooks";
-import { selectIsAuthenticated } from "@features/auth/selectors";
+import { useCheckAuth } from "@features/auth/useCheckAuth";
 import { Navigate } from "react-router-dom";
 
 interface ProtectedRouteProps {
@@ -7,7 +6,7 @@ interface ProtectedRouteProps {
 }
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const isAuthenticated = useCheckAuth();
 
   if (isAuthenticated) return children;
   return <Navigate to="/login" replace />;
