@@ -1,12 +1,11 @@
-import { useAppSelector } from "@app/hooks";
 import Spinner from "@components/ui/Spinner";
-import { selectNetBalanceChartData } from "@features/transactions/selectors";
+import { useNetBalanceChartData } from "@features/transactions/useNetBalanceChartData";
 import React, { Suspense } from "react";
 
 const AreaChart = React.lazy(() => import("@components/ui/AreaChart"));
 
-export default function NetBalanceArea() {
-  const data = useAppSelector(selectNetBalanceChartData);
+export default function NetBalanceAreaChart() {
+  const data = useNetBalanceChartData();
 
   if (!data.length)
     return (
