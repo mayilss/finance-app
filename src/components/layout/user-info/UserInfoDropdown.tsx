@@ -1,16 +1,10 @@
-import { useAppDispatch, useAppSelector } from "@app/hooks";
 import Dropdown from "@components/ui/dropdown/Dropdown";
-import { selectUsername } from "@features/auth/selectors";
-import { logout } from "@features/auth/slice";
-import React from "react";
+import { useLogout } from "./useLogout";
+import { useUsername } from "./useUsername";
 
 export default function UserInfoDropdown() {
-  const dispatch = useAppDispatch();
-  const username = useAppSelector(selectUsername);
-
-  const handleLogout = React.useCallback(() => {
-    dispatch(logout());
-  }, []);
+  const username = useUsername();
+  const logout = useLogout();
 
   return (
     <Dropdown>
@@ -21,7 +15,7 @@ export default function UserInfoDropdown() {
       </Dropdown.Trigger>
       <Dropdown.Menu>
         <Dropdown.MenuItem>
-          <p onClick={handleLogout} role="button">
+          <p onClick={logout} role="button">
             Logout
           </p>
         </Dropdown.MenuItem>
