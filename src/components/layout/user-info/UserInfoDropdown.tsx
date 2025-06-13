@@ -1,5 +1,5 @@
 import Dropdown from "@components/ui/dropdown/Dropdown";
-import { useLogout } from "./useLogout";
+import { useLogout } from "../../../features/auth/useLogout";
 import { useUsername } from "./useUsername";
 
 export default function UserInfoDropdown() {
