@@ -1,22 +1,21 @@
-import { useAppDispatch, useAppSelector } from "@app/hooks";
-import { THEME_MODES, type ThemeState } from "@features/settings/types";
 import Button from "@components/ui/Button";
 import Select from "@components/ui/Select";
+import { THEME_MODES, type ThemeState } from "@features/settings/types";
 import { capitalizeFirstLetterLocale } from "@lib/format";
 import { useForm } from "react-hook-form";
-import { setTheme } from "../slice";
-import { selectTheme } from "../selectors";
+import { useSetTheme } from "../useSetTheme";
+import { useTheme } from "../useTheme";
 
 export default function ThemeForm() {
-  const theme = useAppSelector(selectTheme);
-  const dispatch = useAppDispatch();
+  const theme = useTheme();
+  const setTheme = useSetTheme();
   const form = useForm<ThemeState>({
     defaultValues: {
       mode: theme.mode,
     },
   });
   const onSubmit = (data: ThemeState) => {
-    dispatch(setTheme(data.mode));
+    setTheme(data.mode);
   };
   return (
     <form

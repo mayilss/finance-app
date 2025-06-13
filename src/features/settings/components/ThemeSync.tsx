@@ -1,12 +1,11 @@
-import { useAppSelector } from "@app/hooks";
 import type { ThemeState } from "@features/settings/types";
 import React from "react";
-import { selectTheme } from "../selectors";
+import { useTheme } from "../useTheme";
 
 export default function ThemeSync() {
-  const theme = useAppSelector(selectTheme);
+  const theme = useTheme();
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const mql = window.matchMedia("(prefers-color-scheme: dark)");
 
     const applyMode = ({ mode }: ThemeState) => {
