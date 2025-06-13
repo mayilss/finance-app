@@ -1,8 +1,7 @@
-import { useAppDispatch, useAppSelector } from "@app/hooks";
 import Table from "@components/ui/Table";
 import React from "react";
-import { selectTransactions } from "../selectors";
-import { removeTransaction } from "../slice";
+import { useRemoveTransaction } from "../useRemoveTransaction";
+import { useTransactions } from "../useTransactions";
 import TransactionRow from "./TransactionRow";
 
 export default function TransactionsTable() {
@@ -10,13 +9,9 @@ export default function TransactionsTable() {
     () => ["Label", "Amount", "Date", "Transaction Type", "Actions"],
     [],
   );
-  const transactions = useAppSelector(selectTransactions);
 
-  const dispatch = useAppDispatch();
-
-  const onDelete = React.useCallback((id: string) => {
-    dispatch(removeTransaction(id));
-  }, []);
+  const transactions = useTransactions();
+  const onDelete = useRemoveTransaction();
 
   return (
     <Table
