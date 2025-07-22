@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { AuthState, LoginFormValues } from "./types";
 
 const initialState: AuthState = { user: null, error: null };
-const expectedPassword = "0000";
+const EXPECTED_PASSWORD = "0000";
 
 export const loginAsync = createAsyncThunk<
   AuthState["user"],
   LoginFormValues,
   { rejectValue: string }
 >("auth/login", async ({ username, password }, thunkAPI) => {
-  if (password !== expectedPassword) {
+  if (password !== EXPECTED_PASSWORD) {
     return thunkAPI.rejectWithValue("Invalid password");
   }
   return { username };

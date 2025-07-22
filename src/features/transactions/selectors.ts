@@ -1,5 +1,5 @@
 import type { RootState } from "@app/store";
-import type { ChartData } from "@features/dashboard/types";
+import type { ChartData } from "@lib/types";
 import type { TransactionState } from "@features/transactions/types";
 import { createSelector } from "@reduxjs/toolkit";
 

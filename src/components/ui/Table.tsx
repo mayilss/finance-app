@@ -19,11 +19,11 @@ Table.Head = React.memo(TableHead);
 Table.Body = TableBody;
 Table.Row = React.memo(TableRow);
 
-interface ITableHeadProps {
+interface TableHeadProps {
   columns: Array<string>;
 }
 
-function TableHead({ columns }: ITableHeadProps) {
+function TableHead({ columns }: TableHeadProps) {
   return (
     <thead className="bg-gray-400 dark:bg-blue-950">
       <tr>
@@ -41,19 +41,19 @@ function TableHead({ columns }: ITableHeadProps) {
   );
 }
 
-interface ITableBodyProps {
+interface TableBodyProps {
   children: React.ReactNode;
 }
 
-function TableBody({ children }: ITableBodyProps) {
+function TableBody({ children }: TableBodyProps) {
   return <tbody>{children}</tbody>;
 }
 
-interface ITableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
+interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
   cells: Array<React.ReactNode | string | number>;
 }
 
-function TableRow({ cells, ...props }: ITableRowProps) {
+function TableRow({ cells, ...props }: TableRowProps) {
   return (
     <tr {...props}>
       {cells.map((cell, index) => (

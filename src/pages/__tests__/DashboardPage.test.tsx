@@ -1,5 +1,5 @@
 import type { RootState } from "@app/store";
-import renderWithRedux from "@lib/render-with-redux";
+import renderWithRedux from "@test-utils/render-with-redux";
 import DashboardPage from "@pages/DashboardPage";
 import { cleanup, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";

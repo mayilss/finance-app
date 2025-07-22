@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import DropdownContextProvider, { useDropdownContext } from "./dropdownContext";
+import DropdownContextProvider, { useDropdownContext } from "./DropdownContext";
 
 interface DropdownProps {
   children: React.ReactNode;

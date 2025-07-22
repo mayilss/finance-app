@@ -1,6 +1,6 @@
 import Dropdown from "@components/ui/dropdown/Dropdown";
-import { useLogout } from "../../../features/auth/useLogout";
-import { useUsername } from "./useUsername";
+import { useLogout } from "@features/auth/useLogout";
+import { useUsername } from "@features/auth/useUsername";
 
 export default function UserInfoDropdown() {
   const username = useUsername();

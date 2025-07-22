@@ -1,6 +1,6 @@
 import type { TransactionFormValues } from "@features/transactions/types";
 import { capitalizeFirstLetterLocale, formatCurrency } from "@lib/format";
-import renderWithRedux from "@lib/render-with-redux";
+import renderWithRedux from "@test-utils/render-with-redux";
 import TransactionPage from "@pages/TransactionsPage";
 import { cleanup, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
