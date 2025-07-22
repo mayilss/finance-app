@@ -1,3 +1,4 @@
+import { useAriaLive } from "@app/hooks";
 import Button from "@components/ui/Button";
 import Input from "@components/ui/Input";
 import Select from "@components/ui/Select";
@@ -11,6 +12,7 @@ import { useAddTransaction } from "../useAddTransaction";
 
 export default function TransactionForm() {
   const addTransaction = useAddTransaction();
+  const { announce, LiveRegion } = useAriaLive();
 
   const form = useForm<TransactionFormValues>({
     defaultValues: {
@@ -23,6 +25,9 @@ export default function TransactionForm() {
 
   const onSubmit = (data: TransactionFormValues) => {
     addTransaction(data);
+    announce(
+      `Transaction added: ${data.type} of ${data.amount} for ${data.label}`,
+    );
     form.reset();
   };
 
@@ -31,6 +36,7 @@ export default function TransactionForm() {
       className="mt-8 space-y-4 max-w-lg mx-auto"
       onSubmit={form.handleSubmit(onSubmit)}
     >
+      <LiveRegion />
       <div className="flex flex-col space-y-4">
         <Select
           control={form.control}
